@@ -1,0 +1,122 @@
+<html>
+<head>
+<title>FragmentDetalleMascota.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #808080;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+FragmentDetalleMascota.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">adoptapet.dawi.com.adoptapet.fragmentos</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">android.content.DialogInterface</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.os.Bundle</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.support.annotation.NonNull</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.support.annotation.Nullable</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.support.v4.app.Fragment</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.support.v7.app.AlertDialog</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.view.LayoutInflater</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.view.View</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.view.ViewGroup</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.Button</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.ImageView</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.TextView</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.Toast</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">java.sql.PreparedStatement</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">adoptapet.dawi.com.adoptapet.R</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">adoptapet.dawi.com.adoptapet.util.DbConexion</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">adoptapet.dawi.com.adoptapet.util.Variables</span><span class="s0">;</span>
+
+<span class="s0">public class </span><span class="s1">FragmentDetalleMascota </span><span class="s0">extends </span><span class="s1">Fragment {</span>
+
+    <span class="s1">View view</span><span class="s0">;</span>
+    <span class="s1">ImageView imglista</span><span class="s0">;</span>
+    <span class="s1">TextView textRaza</span><span class="s0">, </span><span class="s1">textDescripcion</span><span class="s0">, </span><span class="s1">textEdad</span><span class="s0">, </span><span class="s1">textSexo</span><span class="s0">, </span><span class="s1">textNombre</span><span class="s0">;</span>
+    <span class="s1">Button btnAdoptar</span><span class="s0">;</span>
+    <span class="s1">String id_mascota</span><span class="s0">;</span>
+
+    <span class="s1">@Nullable</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">View onCreateView(@NonNull LayoutInflater inflater</span><span class="s0">, </span><span class="s1">@Nullable ViewGroup container</span><span class="s0">, </span><span class="s1">@Nullable Bundle savedInstanceState) {</span>
+        <span class="s1">view = inflater.inflate(R.layout.fragment_detalleta_mascota</span><span class="s0">, </span><span class="s1">container</span><span class="s0">, false</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">id_mascota = getArguments().getString(</span><span class="s2">&quot;id_mascota&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">imglista = view.findViewById(R.id.imglista)</span><span class="s0">;</span>
+        <span class="s1">textRaza = view.findViewById(R.id.textRaza)</span><span class="s0">;</span>
+        <span class="s1">textDescripcion = view.findViewById(R.id.textDescripcion)</span><span class="s0">;</span>
+        <span class="s1">textEdad = view.findViewById(R.id.textEdad)</span><span class="s0">;</span>
+        <span class="s1">textSexo = view.findViewById(R.id.textSexo)</span><span class="s0">;</span>
+        <span class="s1">textNombre = view.findViewById(R.id.textNombre)</span><span class="s0">;</span>
+        <span class="s1">btnAdoptar = view.findViewById(R.id.btnAdoptar)</span><span class="s0">;</span>
+
+        <span class="s1">textNombre.setText(getArguments().getString(</span><span class="s2">&quot;nombre_mascota&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">textRaza.setText(getArguments().getString(</span><span class="s2">&quot;raza_mascota&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">textDescripcion.setText(getArguments().getString(</span><span class="s2">&quot;descripcion_mascota&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">textSexo.setText(getArguments().getString(</span><span class="s2">&quot;sexo_mascota&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">textEdad.setText(getArguments().getString(</span><span class="s2">&quot;edad_mascota&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">imglista.setImageResource(getArguments().getInt(</span><span class="s2">&quot;img_mascota&quot;</span><span class="s1">))</span><span class="s0">;</span>
+
+        <span class="s1">btnAdoptar.setOnClickListener(</span><span class="s0">new </span><span class="s1">View.OnClickListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onClick(View v) {</span>
+                    <span class="s1">AlertDialog.Builder builder = </span><span class="s0">new </span><span class="s1">AlertDialog.Builder(getContext())</span><span class="s0">;</span>
+                    <span class="s1">builder.setTitle(</span><span class="s2">&quot;Adopción&quot;</span><span class="s1">)</span>
+                            <span class="s1">.setMessage(</span><span class="s2">&quot;¿Estas seguro que desea adoptar esta mascota?&quot;</span><span class="s1">)</span>
+                            <span class="s1">.setPositiveButton(</span><span class="s2">&quot;Aceptar&quot;</span><span class="s0">, new </span><span class="s1">DialogInterface.OnClickListener() {</span>
+                                <span class="s1">@Override</span>
+                                <span class="s0">public void </span><span class="s1">onClick(DialogInterface dialog</span><span class="s0">, int </span><span class="s1">which) {</span>
+                                    <span class="s1">update()</span><span class="s0">;</span>
+                                    <span class="s1">Toast.makeText(getContext()</span><span class="s0">, </span><span class="s2">&quot;Se notificará al dueño su solicitud.&quot;</span><span class="s0">, </span><span class="s1">Toast.LENGTH_LONG).show()</span><span class="s0">;</span>
+                                    <span class="s1">dialog.dismiss()</span><span class="s0">;</span>
+                                    <span class="s1">getFragmentManager().beginTransaction()</span>
+                                            <span class="s1">.replace(R.id.framgnet_incial</span><span class="s0">, new </span><span class="s1">FragmentListar())</span>
+                                            <span class="s1">.commit()</span><span class="s0">;</span>
+                                <span class="s1">}</span>
+                            <span class="s1">})</span>
+                            <span class="s1">.setNegativeButton(</span><span class="s2">&quot;Cancelar&quot;</span><span class="s0">, new </span><span class="s1">DialogInterface.OnClickListener() {</span>
+                                <span class="s1">@Override</span>
+                                <span class="s0">public void </span><span class="s1">onClick(DialogInterface dialog</span><span class="s0">, int </span><span class="s1">which) {</span>
+                                    <span class="s1">dialog.cancel()</span><span class="s0">;</span>
+                                <span class="s1">}</span>
+                            <span class="s1">})</span><span class="s0">;</span>
+                    <span class="s1">builder.create().show()</span><span class="s0">;</span>
+                <span class="s3">//</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+
+        <span class="s0">return </span><span class="s1">view</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public int </span><span class="s1">update() {</span>
+        <span class="s0">int </span><span class="s1">resultado = </span><span class="s4">0</span><span class="s0">,</span><span class="s1">resultado1 = </span><span class="s4">0</span><span class="s0">;</span>
+        <span class="s0">try </span><span class="s1">{</span>
+            <span class="s1">DbConexion db = </span><span class="s0">new </span><span class="s1">DbConexion()</span><span class="s0">;</span>
+            <span class="s1">PreparedStatement pst = db.getConnection().prepareStatement(</span><span class="s2">&quot;update tb_mascota set id_estado = 2 where id_mas = ?&quot;</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">pst.setString(</span><span class="s4">1</span><span class="s0">, </span><span class="s1">id_mascota)</span><span class="s0">;</span>
+            <span class="s1">resultado = pst.executeUpdate()</span><span class="s0">;</span>
+            <span class="s0">if</span><span class="s1">(resultado != </span><span class="s4">0</span><span class="s1">) {</span>
+                <span class="s1">PreparedStatement pst1 = db.getConnection().prepareStatement(</span><span class="s2">&quot;insert into tb_adopcion values ( ? , ?)&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                <span class="s1">pst1.setInt(</span><span class="s4">1</span><span class="s0">, </span><span class="s1">Variables.getId_usu())</span><span class="s0">;</span>
+                <span class="s1">pst1.setInt(</span><span class="s4">2</span><span class="s0">,</span><span class="s1">Integer.parseInt(id_mascota))</span><span class="s0">;</span>
+                <span class="s1">resultado1 = pst1.executeUpdate()</span><span class="s0">;</span>
+            <span class="s1">}</span>
+
+        <span class="s1">} </span><span class="s0">catch </span><span class="s1">(Exception e) {</span>
+            <span class="s1">e.printStackTrace()</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s0">return </span><span class="s1">resultado1</span><span class="s0">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
