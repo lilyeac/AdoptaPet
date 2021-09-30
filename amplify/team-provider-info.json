@@ -15,6 +15,12 @@
       "auth": {
         "adoptapetf6096825": {},
         "adoptapet0d51a94f": {}
+      },
+      "function": {
+        "lambdafunction": {
+          "adopt": "adopt",
+          "secretsPathAmplifyAppId": "d1fakuatcu39xp"
+        }
       }
     }
   }
