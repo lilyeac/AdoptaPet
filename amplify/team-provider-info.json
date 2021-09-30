@@ -10,6 +10,11 @@
       "StackName": "amplify-adoptapet-dev-20128",
       "StackId": "arn:aws:cloudformation:us-east-1:596247843051:stack/amplify-adoptapet-dev-20128/3e8fea30-21bc-11ec-ae7a-0e964048dd17",
       "AmplifyAppId": "d1fakuatcu39xp"
+    },
+    "categories": {
+      "auth": {
+        "adoptapetf6096825": {}
+      }
     }
   }
 }
