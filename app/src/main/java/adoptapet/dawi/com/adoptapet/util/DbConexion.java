@@ -24,12 +24,13 @@ public class DbConexion {
             //Class.forName("com.mysql.jdbc.Driver").newInstance();
             Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
             //connection = DriverManager.getConnection("jdbc:mysql://192.168.0.194:41972/db_adoptapets","imori","Oracle");
-            connection = DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.1.33;databasename=bd_adoptapets;user="";password=""");
+          //  connection = DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.1.33;databasename=bd_adoptapets;user="";password=""");
         //"jdbc:jtds:sqlserver://192.168.56.1;databaseName=db_adoptapets;user=sa;password=N30r4b4r"
          Log.e("Conexion",connection.toString());
         }catch (Exception e){
             e.printStackTrace();
         }
+
         return connection;
     }
 }
