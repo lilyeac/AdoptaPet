@@ -1,0 +1,29 @@
+type TbAdopcion @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  TbUsuario: TbUsuario @connection
+  TbMascota: TbMascota @connection
+}
+
+type TbUsuario @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  nom_us: String
+  ape_us: String
+  der_usu: String
+  num_usu: String
+  cel_usu: String
+  email_us: String
+  login: String
+  password: String
+}
+
+type TbMascota @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  nom_mas: String
+  raza_mas: String
+  edad_mas: String
+  tam_mas: String
+  des_mas: String
+  vac_mas: String
+  sexo_mas: String
+  id_estado: String
+}

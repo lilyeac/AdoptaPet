@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "api": {
+      "Adoptapet": [
+        "Mutation"
+      ]
+    }
+  },
+  "lambdaLayers": [],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "adopt",
+      "environmentVariableName": "adopt"
+    }
+  ],
+  "secretNames": [
+    "adoptapet"
+  ]
+}
