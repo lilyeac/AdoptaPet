@@ -14,12 +14,27 @@
     "categories": {
       "auth": {
         "adoptapetf6096825": {},
-        "adoptapet0d51a94f": {}
+        "adoptapet0d51a94f": {},
+        "cognito5e88664b": {},
+        "adoptapeta7bbd8b3": {},
+        "adoptapet9f2325ca": {}
       },
       "function": {
         "lambdafunction": {
           "adopt": "adopt",
           "secretsPathAmplifyAppId": "d1fakuatcu39xp"
+        },
+        "lamdafuncion": {
+          "amplifyBackendAppId": "d2k4leq8yezaum",
+          "deploymentBucketName": "amplify-adoptapet-dev-20128-deployment",
+          "s3Key": "amplify-builds/lamdafuncion-586376753230394e7632-build.zip"
+        },
+        "lambdafuncion": {
+          "123456": "123456",
+          "lamdaenviroment": "lambda_enviroment",
+          "secretsPathAmplifyAppId": "d1fakuatcu39xp",
+          "deploymentBucketName": "amplify-adoptapet-dev-20128-deployment",
+          "s3Key": "amplify-builds/lambdafuncion-56474f35487962533839-build.zip"
         }
       }
     }
